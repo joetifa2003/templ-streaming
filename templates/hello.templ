@@ -1,0 +1,23 @@
+package templates
+
+import "errors"
+
+func Data() (string, error) {
+	return "joetifa", errors.New("oops")
+}
+
+templ Placeholder() {
+	<div>Placeholder</div>
+}
+
+templ DataView(s string) {
+	<div>Hi { s }</div>
+}
+
+templ ErrorView(e error) {
+	<div>{ e.Error() }</div>
+}
+
+templ Main() {
+	@Suspense(Placeholder(), Data, DataView, ErrorView)
+}
